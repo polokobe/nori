@@ -1,8 +1,13 @@
+# 指定 cmake 的最小版本
 cmake_minimum_required (VERSION 3.2)
+# 指定项目名称
 project(nori)
 
+# 执行完当前CmakeLists.txt 再执行 ext 子目录下的CmakeLists.txt，中间的二进制存在 ext_build 中
 add_subdirectory(ext ext_build)
 
+# 设置包含目录
+# 向工程添加特定的头文件搜索
 include_directories(
   # Nori include files
   ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -35,6 +40,8 @@ include_directories(
   SYSTEM ${STB_IMAGE_WRITE_INCLUDE_DIR}
 )
 
+# 编译可执行程序
+# add_executable(可执行文件名 生成该可执行文件所需的源文件)
 # The following lines build the main executable. If you add a source
 # code file to Nori, be sure to include it in this list.
 add_executable(nori
@@ -90,6 +97,7 @@ add_executable(nori
   src/dielectric.cpp
 )
 
+# 设置宏定义
 add_definitions(${NANOGUI_EXTRA_DEFS})
 
 # The following lines build the warping test application
@@ -103,7 +111,10 @@ add_executable(warptest
   src/common.cpp
 )
 
+# windows 操作系统
 if (WIN32)
+  # 链接动态库
+  # target_link_libraries(所需生成的文件名称，所需链接的动态库名称)
   target_link_libraries(nori tbb_static pugixml IlmImf nanogui ${NANOGUI_EXTRA_LIBS} zlibstatic)
 else()
   target_link_libraries(nori tbb_static pugixml IlmImf nanogui ${NANOGUI_EXTRA_LIBS})
@@ -112,6 +123,7 @@ endif()
 target_link_libraries(warptest tbb_static nanogui ${NANOGUI_EXTRA_LIBS})
 
 # Force colored output for the ninja generator
+# STREQUAL 字符串比较
 if (CMAKE_GENERATOR STREQUAL "Ninja")
   if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fcolor-diagnostics")
@@ -122,6 +134,8 @@ if (CMAKE_GENERATOR STREQUAL "Ninja")
   endif()
 endif()
 
+# 为编译器添加额外的特征
+# 通常情况下，如果target是可执行文件，建议使用PRIVATE， 如果target是动态或静态库， 建议使用PUBLIC，比较方便。
 target_compile_features(warptest PRIVATE cxx_std_17)
 target_compile_features(nori PRIVATE cxx_std_17)
 

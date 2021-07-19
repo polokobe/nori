@@ -4,6 +4,7 @@
     Copyright (c) 2015 by Wenzel Jakob
 */
 
+// 同一个文件不会被包含多次，指物理的文件
 #pragma once
 
 #if defined(_MSC_VER)
@@ -38,6 +39,7 @@
 #define Epsilon 1e-4f
 
 /* A few useful constants */
+// 取消定义的宏
 #undef M_PI
 
 #define M_PI         3.14159265358979323846f
@@ -140,6 +142,8 @@ public:
 };
 
 /// Return the number of cores (real and virtual)
+// 一、使用头文件调用，这时候，函数和变量必须在头文件中定义和声明。    
+// 二、使用extern关键字调用，这时候函数和变量在.cpp或者.c文件中定义和声明。
 extern int getCoreCount();
 
 /// Indent a string by the specified number of spaces
@@ -239,8 +243,10 @@ extern Point2f sphericalCoordinates(const Vector3f &dir);
  * \param cosThetaI
  *      Cosine of the angle between the normal and the incident ray
  * \param extIOR
+ // 外部折射率
  *      Refractive index of the side that contains the surface normal
  * \param intIOR
+ // 内部折射率
  *      Refractive index of the interior
  */
 extern float fresnel(float cosThetaI, float extIOR, float intIOR);

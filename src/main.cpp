@@ -147,6 +147,8 @@ static void render(Scene *scene, const std::string &filename) {
     bitmap->savePNG(outputName);
 }
 
+# argc：argument count. 参数个数
+# argv: argument vector. 传入 main 的参数序列或指针
 int main(int argc, char **argv) {
     if (argc < 2) {
         cerr << "Syntax: " << argv[0] << " <scene.xml> [--no-gui] [--threads N]" <<  endl;

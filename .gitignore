@@ -13,7 +13,6 @@ Makefile
 build.ninja
 rules.ninja
 .vs
-.vscode
 /out
 *.sublime-workspace
 *.sublime-project

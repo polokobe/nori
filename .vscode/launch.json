@@ -1,0 +1,23 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Debug", //名称
+            "type": "cppdbg", //调试类型，除使用msvc进行调试外，均为该类型
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${workspaceFolderBasename}", //指定C/C++程序位置
+            "args": [
+                "${workspaceFolder}/scenes/pa0/01.xml"
+            ], //指定运行参数
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/build", //指定工作目录
+            "preLaunchTask": "compile", //在调试前会先调用这个task编译构建程序
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb" //指定使用lldb进行调试
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+ 
+<test type="chi2test">
+    <!-- Run a χ2 test on the microfacet BRDF model (@ 0.01 significance level) -->
+    <float name="significanceLevel" value="0.01"/>
+
+</test>
